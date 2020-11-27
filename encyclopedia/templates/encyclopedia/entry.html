@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if entry_title == None %}
+        Not found - Encyclopedia
+    {% else %}
+        {{ entry_title }} - Encyclopedia
+    {% endif %}
+    
+{% endblock %}
+
+{% block body %}
+
+    {% if entry_title == None %}
+        <h1>Entry not found</h1>
+        Unfortunatelly, we couldn't find any matches.
+        <br>You can add new entry here.
+    {% else %}
+        <h1>{{ entry_title }}</h1>
+        {{ entry|safe }}
+    {% endif %}
+
+{% endblock %}

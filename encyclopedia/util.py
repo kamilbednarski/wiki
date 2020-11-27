@@ -35,3 +35,18 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+
+def get_filename(title):
+    """
+    Gets entry's filename from path. If no such
+    entry exists, the function returns None.
+    """
+    try:
+        f = default_storage.open(f"entries/{title}.md")
+        with open(f"entries/{title}.md") as f:
+            entry_title = f.readline()
+            entry_title = entry_title.replace("# ", "")
+        return entry_title
+    except FileNotFoundError:
+        return None
