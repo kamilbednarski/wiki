@@ -5,8 +5,31 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Add new page</h1>
-
+    <div class="row">
+        <div class="col">
+            <h1>Add new page</h1>
+        </div>
+    </div>
+    <div class="row pt-4">
+        <div class="col">
+            <div class="alert alert-primary">
+                <h4 class="alert-heading">Writing and formatting</h4>
+                <p>Please ensure that when writing content for new page, you are using Markdown.</p>
+                <hr>
+                <p class="mb-0">For basic writing and formating guide, visit <a href="https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub Docs</a>.</p>
+            </div>      
+        </div>
+    </div>
+    <form action="{% url 'encyclopedia:new_page' %}" method="POST">
+        {% csrf_token %}
+        <div class="row pt-3">
+            <div class="col" style="height: 55vh;">
+                <label for="newPageContentInput"><h6>Write new page's content below.</h6></label>
+                <textarea name="text_input" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput"></textarea>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add new page">
+    </form>
     
 
 {% endblock %}
