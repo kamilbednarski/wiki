@@ -60,3 +60,9 @@ def search(request):
         return render(request, "encyclopedia/index.html", {
             "entries": util.list_entries()
         })
+
+def new_page(request):
+    """
+    Redirects to page with possibility to add new entry.
+    """
+    return render(request, "encyclopedia/new_page.html")
