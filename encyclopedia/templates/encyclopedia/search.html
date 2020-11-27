@@ -6,16 +6,17 @@
 
 {% block body %}
     <h1>Search results</h1>
-    It's search page
-    Query: {{ query }}<br>
+    <h4>Query: '{{ query }}'</h4>
+
     {% if list_of_entries %}
-    
     <ul>
         {% for entry in list_of_entries %}
-        <li>{{ entry }}</li>
+        <li><a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a></li>
         {% endfor %}
     </ul>
-
+    {% else %}
+    Unfortunatelly, we couldn't find any matches.
+    <br>You can add new entry here.
     {% endif %}
 
     

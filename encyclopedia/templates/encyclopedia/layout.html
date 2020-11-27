@@ -10,27 +10,40 @@
     </head>
     <body>
         <div class="row">
-            <div class="sidebar col-lg-2 col-md-3 pl-4">
-                <h2>Wiki</h2>
-                <form action="{% url 'encyclopedia:search' %}" method="POST">
-                    {% csrf_token %}
-                    <input class="search" type="text" name="query" placeholder="Search Encyclopedia">
-                </form>
-                <div>
-                    <a href="{% url 'encyclopedia:index' %}">Home</a>
+            <div class="sidebar col-lg-2 col-md-3">
+                <div class="container">
+                    <h2>Wiki</h2>
                 </div>
-                <div>
-                    Create New Page
+                <div class="container pt-2">
+                    <form action="{% url 'encyclopedia:search' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">🔍</div>
+                            </div>
+                            <input class="form-control" type="text" name="query" placeholder="Search...">
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    Random Page
-                </div>
-                {% block nav %}
-                {% endblock %}
+                <div class="container pt-2">
+                    <div class="pt-2">
+                        <a href="{% url 'encyclopedia:index' %}">Home</a>
+                    </div>
+                    <div class="pt-2">
+                        Create New Page
+                    </div>
+                    <div class="pt-2">
+                        Random Page
+                    </div>
+                    {% block nav %}
+                    {% endblock %}
+                </div>    
             </div>
             <div class="main col-lg-10 col-md-9">
-                {% block body %}
-                {% endblock %}
+                <div class="container-fluid">
+                    {% block body %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
 

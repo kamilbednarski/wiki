@@ -41,7 +41,6 @@ def search(request):
         # search function is trying to find entry with name containing the query,
         # as a substring.
         if not util.get_entry(query):
-            query = 'rysiek'
             list_of_entries = util.list_similar(query)
             return render(request, "encyclopedia/search.html", {
                 "query": query,
