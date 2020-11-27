@@ -23,9 +23,15 @@
     <form action="{% url 'encyclopedia:new_page' %}" method="POST">
         {% csrf_token %}
         <div class="row pt-3">
-            <div class="col" style="height: 55vh;">
-                <label for="newPageContentInput"><h6>Write new page's content below.</h6></label>
-                <textarea name="text_input" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput"></textarea>
+            <div class="col">
+                <label for="newPageTitleInput"><h6>Type title for new page below.</h6></label>
+                <input name="title" class="form-control" type="text" id="newPageTitleInput">
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col" style="height: 50vh;">
+                <label for="newPageContentInput"><h6>Type Markdown formatted content for new page below.</h6></label>
+                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput"></textarea>
             </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Add new page">

@@ -1,5 +1,6 @@
 import re
 
+from markdown import markdown
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -48,7 +49,9 @@ def get_entry(title):
     """
     try:
         f = default_storage.open(f"entries/{title}.md")
-        return f.read().decode("utf-8")
+        markdown_content = f.read().decode("utf-8")
+        converted_content = markdown(markdown_content)
+        return converted_content
     except FileNotFoundError:
         return None
 

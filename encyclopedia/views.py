@@ -63,6 +63,16 @@ def search(request):
 
 def new_page(request):
     """
-    Redirects to page with possibility to add new entry.
+    Adds submitted entry to entries/ or renders new_page.html
+    with possibility to create and add one.
     """
-    return render(request, "encyclopedia/new_page.html")
+    if request.method == ['POST']:
+        # Check if entry already exists.
+        # If yes, render new_page.html with information, that page with that
+        # name already exists.
+        # If not, collect input from POST method and create new file
+        # in entries/ directory
+        return render(request, "encyclopedia/new_page.html")
+
+    else:
+        return render(request, "encyclopedia/new_page.html")
