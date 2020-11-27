@@ -3,6 +3,10 @@ import re
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
+def contains(string, substring):
+    string = string.lower()
+    substring = substring.lower()
+    return string.__contains__(substring)
 
 def list_entries():
     """
@@ -11,6 +15,16 @@ def list_entries():
     _, filenames = default_storage.listdir("entries")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
+
+def list_similar(query):
+    """
+    Returns a list of names of encyclopedia entries
+    that contains given query as a substring.
+    """
+    _, filenames = default_storage.listdir("entries")
+    return list(sorted(re.sub(r"\.md$", "", filename)
+                for filename in filenames if contains(filename, "py")))
+
 
 
 def save_entry(title, content):
