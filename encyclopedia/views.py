@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
+
 
 from . import util
 
@@ -66,8 +67,14 @@ def new_page(request):
     Adds submitted entry to entries/ or renders new_page.html
     with possibility to create and add one.
     """
-    if request.method == ['POST']:
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+
         # Check if entry already exists.
+        if util.get_filename(title) != None:
+            message = 'Entry already exists.'
+            return redirect('encyclopedia:index', message)
         # If yes, render new_page.html with information, that page with that
         # name already exists.
         # If not, collect input from POST method and create new file
@@ -75,4 +82,5 @@ def new_page(request):
         return render(request, "encyclopedia/new_page.html")
 
     else:
+        print("######method:get")
         return render(request, "encyclopedia/new_page.html")
