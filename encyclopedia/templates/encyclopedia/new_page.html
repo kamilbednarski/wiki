@@ -5,12 +5,29 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row pb-4">
         <div class="col">
             <h1>Add new page</h1>
         </div>
     </div>
-    <div class="row pt-4">
+
+    <!-- Alert messages -->
+    {% if messages %}
+    <div class="row pb-1">
+        <div class="col">
+            <div class="alert alert-warning">
+                <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Info about formating new entry -->
+    <div class="row">
         <div class="col">
             <div class="alert alert-primary">
                 <h4 class="alert-heading">Writing and formatting</h4>
@@ -20,18 +37,20 @@
             </div>      
         </div>
     </div>
+
+    <!-- Form with title and content for new entry -->
     <form action="{% url 'encyclopedia:new_page' %}" method="POST">
         {% csrf_token %}
         <div class="row pt-3">
             <div class="col">
                 <label for="newPageTitleInput"><h6>Type title for new page below.</h6></label>
-                <input name="title" class="form-control" type="text" id="newPageTitleInput">
+                <input name="title" class="form-control" type="text" id="newPageTitleInput" required>
             </div>
         </div>
         <div class="row pt-3">
             <div class="col" style="height: 50vh;">
                 <label for="newPageContentInput"><h6>Type Markdown formatted content for new page below.</h6></label>
-                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput"></textarea>
+                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput" required></textarea>
             </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Add new page">

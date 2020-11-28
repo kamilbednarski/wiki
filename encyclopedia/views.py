@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
+from django.contrib import messages
 
 
 from . import util
@@ -71,16 +72,16 @@ def new_page(request):
         title = request.POST.get('title')
         content = request.POST.get('content')
 
-        # Check if entry already exists.
+        # Checks if entry already exists.
         if util.get_filename(title) != None:
-            message = 'Entry already exists.'
-            return redirect('encyclopedia:index', message)
-        # If yes, render new_page.html with information, that page with that
-        # name already exists.
+            # If yes, redirects to new_page with message,
+            # that page with that name already exists.
+            messages.info(request, "Entry with that title already exists. If you want to add new content or edit existing, please use 'Edit' option on that entry's page.")
+            return redirect('encyclopedia:new_page')
+
         # If not, collect input from POST method and create new file
         # in entries/ directory
         return render(request, "encyclopedia/new_page.html")
 
     else:
-        print("######method:get")
         return render(request, "encyclopedia/new_page.html")
