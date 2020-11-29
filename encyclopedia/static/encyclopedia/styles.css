@@ -12,19 +12,27 @@ code {
 h1 {
     margin-top: 0px;
     padding-top: 20px;
-    font-weight: 400;
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+h3 {
+    font-weight: 300;
 }
 
 h4 {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 h5 {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 h6 {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 textarea {
@@ -43,7 +51,7 @@ textarea {
 }
 
 .sidebar {
-    background-color: #f0f0f0;
+    
     height: 100vh;
     padding: 20px;
 }
@@ -53,5 +61,17 @@ textarea {
 }
 
 .logo {
-    font-weight: 700;
+    
+    color: darkslategray;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.main-content {
+    padding-left: 4vw;
+    padding-right: 5vw;
+}
+
+.top-bar {
+    box-shadow: 3px 3px 11px #00000015;
 }

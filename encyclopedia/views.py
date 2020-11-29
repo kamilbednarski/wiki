@@ -84,10 +84,12 @@ def new_page(request):
             # that page with that name already exists.
             messages.info(request, "Entry with that title already exists. If you want to add new content or edit existing, please use 'Edit' option on that entry's page.")
             return redirect('encyclopedia:new_page')
-
-        # If not, collect input from POST method and create new file
-        # in entries/ directory
-        return render(request, "encyclopedia/new_page.html")
+        else:
+            # If not, create new file
+            # in entries/ directory
+            util.save_entry(title, content)
+            messages.info(request, "New entry successfully added.")
+            return redirect('encyclopedia:entry', title=title)
 
     else:
         return render(request, "encyclopedia/new_page.html")

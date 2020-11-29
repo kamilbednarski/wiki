@@ -6,8 +6,8 @@
 
 {% block body %}
     <div class="row pb-4">
-        <div class="col">
-            <h1>Add new page</h1>
+        <div class="col pt-4">
+            <h2>Add new page</h2>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
     <!-- Info about formating new entry -->
     <div class="row">
         <div class="col">
-            <div class="alert alert-primary">
+            <div class="alert alert-info">
                 <h4 class="alert-heading">Writing and formatting</h4>
                 <p>Please ensure that when writing content for new page, you are using Markdown.</p>
                 <hr>
@@ -48,12 +48,12 @@
             </div>
         </div>
         <div class="row pt-3">
-            <div class="col" style="height: 50vh;">
+            <div class="col" style="height: 45vh;">
                 <label for="newPageContentInput"><h6>Type Markdown formatted content for new page below.</h6></label>
                 <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput" required></textarea>
             </div>
         </div>
-        <input class="btn btn-primary" type="submit" value="Add new page">
+        <input class="btn btn-outline-success" type="submit" value="Add new page">
     </form>
     
 
