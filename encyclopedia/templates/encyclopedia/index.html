@@ -7,6 +7,21 @@
 {% block body %}
     <h1>All Pages</h1>
 
+    <!-- Alert messages -->
+    {% if messages %}
+    <div class="row pb-1">
+        <div class="col">
+            <div class="alert alert-warning">
+                <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <ul>
         {% for entry in entries %}
             <li><a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a></li>

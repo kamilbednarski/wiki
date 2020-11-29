@@ -6,6 +6,22 @@
 
 {% block body %}
     <h1>Search results</h1>
+    
+    <!-- Alert messages -->
+    {% if messages %}
+    <div class="row pb-1">
+        <div class="col">
+            <div class="alert alert-secondary">
+                <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <h4>Query: '{{ query }}'</h4>
 
     {% if list_of_entries %}

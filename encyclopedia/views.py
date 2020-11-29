@@ -44,10 +44,16 @@ def search(request):
         # as a substring.
         if not util.get_entry(query):
             list_of_entries = util.list_similar(query)
-            return render(request, "encyclopedia/search.html", {
-                "query": query,
-                "list_of_entries": list_of_entries
-            })
+            if not list_of_entries:
+                messages.info(request, "Unfortunatelly, we couldn't find any matches.")
+                return redirect('encyclopedia:index')
+
+            else:
+                messages.info(request, "Unfortunatelly, we couldn't find exact match. List of similar entries displayed below.")
+                return render(request, "encyclopedia/search.html", {
+                    "query": query,
+                    "list_of_entries": list_of_entries
+                })
 
         # If util.get_entry() found entry with name equal to query string,
         # search function is rendering it's page.    
