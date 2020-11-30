@@ -6,10 +6,18 @@
     {% else %}
         {{ entry_title }} - Encyclopedia
     {% endif %}
-    
+{% endblock %}
+
+{% block header %}
+    {{ entry_title }}
 {% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class="col pt-3">
+            <input class="btn btn-outline-secondary border" type="submit" value="EDIT">
+        </div>
+    </div>
 
     <!-- Alert messages -->
     {% if messages %}

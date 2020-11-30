@@ -4,37 +4,30 @@
     New page - Encyclopedia
 {% endblock %}
 
-{% block body %}
-    <div class="row pb-4">
-        <div class="col pt-4">
-            <h2>Add new page</h2>
-        </div>
-    </div>
+{% block header %}
+    ADD NEW PAGE
+{% endblock %}
 
-    <!-- Alert messages -->
-    {% if messages %}
-    <div class="row pb-1">
-        <div class="col">
-            <div class="alert alert-warning">
-                <div class="messages">
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                    {% endfor %}
-                </div>
+{% block message %}
+        {% if messages %}
+        <div class="col text-center alert-warning py-1">
+            <div class="messages">
+                {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
             </div>
         </div>
-    </div>
-    {% endif %}
+        {% endif %}
+{% endblock %}
 
+{% block body %}
     <!-- Info about formating new entry -->
     <div class="row">
-        <div class="col">
-            <div class="alert alert-info">
-                <h4 class="alert-heading">Writing and formatting</h4>
-                <p>Please ensure that when writing content for new page, you are using Markdown.</p>
-                <hr>
-                <p class="mb-0">For basic writing and formating guide, visit <a href="https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub Docs</a>.</p>
-            </div>      
+        <div class="col info-bar py-3">
+            <h4>Writing and formatting</h4>
+            <p>Please ensure that when writing content for new page, you are using Markdown. Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber and Aaron Swartz. Markdown is often used for formatting readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.            </p>
+            <hr>
+            <p class="mb-0">For basic writing and formating guide, visit <a href="https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub Docs</a>.</p>      
         </div>
     </div>
 
@@ -44,16 +37,16 @@
         <div class="row pt-3">
             <div class="col">
                 <label for="newPageTitleInput"><h6>Type title for new page below.</h6></label>
-                <input name="title" class="form-control" type="text" id="newPageTitleInput" required>
+                <input name="title" class="form-control sharp-border" type="text" id="newPageTitleInput" required>
             </div>
         </div>
-        <div class="row pt-3">
-            <div class="col" style="height: 45vh;">
+        <div class="row pt-3 pb-3">
+            <div class="col" style="height: 40vh;">
                 <label for="newPageContentInput"><h6>Type Markdown formatted content for new page below.</h6></label>
-                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom" id="newPageContentInput" required></textarea>
+                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom sharp-border" id="newPageContentInput" required></textarea>
             </div>
         </div>
-        <input class="btn btn-outline-success" type="submit" value="Add new page">
+        <input class="btn btn-outline-success sharp-border" type="submit" value="Add new page">
     </form>
     
 

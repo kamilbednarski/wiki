@@ -20,42 +20,51 @@
         <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <div class="row top-bar">
-            <div class="col py-3 logo text-center border-bottom">
-                Encyclopedia
+        <!-- Main Logo -->
+        <div class="row border-bottom">
+            <div class="col pt-4 text-center">
+                <div class="logo">Encyclopedia</div>
+            </div>
+            <div class="col-2 pt-4 pb-3">
+                <form action="{% url 'encyclopedia:search' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-2">
+                        <input class="form-control" type="text" name="query" placeholder="Search...">
+                    </div>
+                </form>
             </div>
         </div>
+
+        <!-- Nav bar -->
+        <div class="row nav-bar py-2">
+            <div class="col text-center">
+                <a class="text-secondary" href="{% url 'encyclopedia:index' %}">HOME PAGE</a>
+            </div>
+            <div class="col text-center">
+                <a class="text-secondary" href="{% url 'encyclopedia:new_page' %}">CREATE NEW PAGE</a>
+            </div>
+            <div class="col text-center">
+                <a class="text-secondary" href="">RANDOM PAGE</a>
+            </div>  
+        </div>
+
+        <!-- Main header -->
+        <div class="row main-header text-center">
+            <div class="col py-2">
+                {% block header %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <!-- Message bar -->
         <div class="row">
-            <div class="sidebar col-lg-2 col-md-3 border-right">
-                <div class="container pt-2">
-                    <form action="{% url 'encyclopedia:search' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="input-group mb-2">
-                            <input class="form-control border" type="text" name="query" placeholder="Search...">
-                        </div>
-                    </form>
-                </div>
-                <div class="container pt-2">
-                    <div class="pt-2">
-                        <a class="btn btn-outline-secondary btn-block border" href="{% url 'encyclopedia:index' %}">Home</a>
-                    </div>
-                    <div class="pt-2">
-                        <a class="btn btn-outline-secondary btn-block border" href="{% url 'encyclopedia:new_page' %}">Create New Page</a>
-                    </div>
-                    <div class="pt-2">
-                        <a class="btn btn-outline-secondary btn-block border" href="">Random Page</a>
-                    </div>
-                    {% block nav %}
-                    {% endblock %}
-                </div>    
-            </div>
-            <div class="main col-lg-10 col-md-9">
-                <div class="container-fluid main-content">
-                    {% block body %}
-                    {% endblock %}
-                </div>
-            </div>
+                {% block message %}
+                {% endblock %}
         </div>
+        
+        <!-- Content -->        
+        {% block body %}
+        {% endblock %}
 
     </body>
 </html>

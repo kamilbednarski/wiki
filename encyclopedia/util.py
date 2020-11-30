@@ -6,6 +6,9 @@ from django.core.files.storage import default_storage
 
 
 def contains(string, substring):
+    """
+    Checks if string contains substring.
+    """
     string = string.lower()
     substring = substring.lower()
     return string.__contains__(substring)

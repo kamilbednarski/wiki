@@ -1,8 +1,9 @@
 body {
-    margin: 0;
+    margin: auto;
     background-color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    max-width: 1200px;
 }
 
 code {
@@ -50,28 +51,28 @@ textarea {
     line-height: 15px;
 }
 
-.sidebar {
-    
-    height: 100vh;
-    padding: 20px;
-}
-
-.sidebar h2 {
-    margin-top: 5px;
-}
-
 .logo {
-    
-    color: darkslategray;
-    font-size: 1.8rem;
+    padding-left: 200px;
+    font-family: 'Libre Baskerville', 'Serif';
+    color: #2F4F4F;
+    font-size: 1.5rem;
     font-weight: 300;
 }
 
-.main-content {
-    padding-left: 4vw;
-    padding-right: 5vw;
+.main-header {
+    background-color: #2F4F4F;
+    color: white;
 }
 
-.top-bar {
-    box-shadow: 3px 3px 11px #00000015;
+.info-bar {
+    background-color: #CBD3D3;
+}
+
+.alert-warning {
+    background-color: #FF6060;
+    color: white;
+}
+
+.sharp-border {
+    border-radius: 0;
 }
