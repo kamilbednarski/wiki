@@ -115,3 +115,11 @@ def edit_page(request):
             'title': title,
             'content': util.get_entry_markdown(title),
         })
+
+def random_page(request):
+    """
+    Redirects to random entry.
+    """
+    # Generate random selection
+    random_choice = util.get_random()
+    return redirect('encyclopedia:entry', title=random_choice)

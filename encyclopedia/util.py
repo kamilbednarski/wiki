@@ -1,4 +1,5 @@
 import re
+import random
 
 from markdown import markdown
 from django.core.files.base import ContentFile
@@ -21,6 +22,14 @@ def list_entries():
     _, filenames = default_storage.listdir("entries")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
+
+def get_random():
+    """
+    Returns random entry name.
+    """
+    list_of_entries = list_entries()
+    random_entry = random.choice(list_of_entries)
+    return random_entry
 
 
 def list_similar(query):
