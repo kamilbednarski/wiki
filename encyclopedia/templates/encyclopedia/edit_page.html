@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block header %}
-    ADD NEW PAGE
+    EDIT PAGE
 {% endblock %}
 
+<!-- Messages -->
 {% block message %}
         {% if messages %}
         <div class="col text-center alert-warning py-1 px-5">
@@ -32,22 +33,16 @@
     </div>
 
     <!-- Form with title and content for new entry -->
-    <form action="{% url 'encyclopedia:new_page' %}" method="POST">
+    <form action="{% url 'encyclopedia:edit_page' %}" method="POST">
         {% csrf_token %}
-        <div class="row pt-3 px-5">
-            <div class="col">
-                <label for="newPageTitleInput"><h6>Type title for new page below.</h6></label>
-                <input name="title" class="form-control sharp-border" type="text" id="newPageTitleInput" required>
-            </div>
-        </div>
         <div class="row pt-3 pb-3 px-5">
             <div class="col" style="height: 40vh;">
-                <label for="newPageContentInput"><h6>Type Markdown formatted content for new page below.</h6></label>
-                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom sharp-border" id="newPageContentInput" required></textarea>
+                <input name="title" class="form-control sharp-border" type="text" id="newPageTitleInput" value="{{ title }}" hidden required>
+                <label for="newPageContentInput"><h6>Type Markdown formatted content to edit page content.</h6></label>
+                <textarea name="content" style="resize:none; height: 90%;" class="form-control text-field-custom sharp-border" id="newPageContentInput" required>{{ content }}</textarea>
             </div>
         </div>
-        <input class="btn btn-outline-success sharp-border ml-5" type="submit" value="Add new page">
+        <input class="btn btn-outline-success sharp-border ml-5" type="submit" value="Save changes">
     </form>
     
-
 {% endblock %}

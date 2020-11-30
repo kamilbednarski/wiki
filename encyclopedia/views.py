@@ -49,7 +49,7 @@ def search(request):
                 return redirect('encyclopedia:index')
 
             else:
-                messages.info(request, "Unfortunatelly, we couldn't find exact match. List of similar entries displayed below.")
+                messages.info(request, f"Unfortunatelly, we couldn't find exact match for query '{query}'. List of similar entries displayed below.")
                 return render(request, "encyclopedia/search.html", {
                     "query": query,
                     "list_of_entries": list_of_entries
@@ -93,3 +93,25 @@ def new_page(request):
 
     else:
         return render(request, "encyclopedia/new_page.html")
+
+
+def edit_page(request):
+    """
+    Edits existing entry.
+    """
+    if request.method == 'POST':
+
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+
+        util.save_entry(title, content)
+        
+        messages.info(request, "Entry successfully edited.")
+        return redirect('encyclopedia:entry', title=title)
+  
+    else:
+        title = request.GET.get('title')
+        return render(request, 'encyclopedia/edit_page.html', {
+            'title': title,
+            'content': util.get_entry_markdown(title),
+        })

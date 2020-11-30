@@ -9,33 +9,42 @@
 {% endblock %}
 
 {% block header %}
-    {{ entry_title }}
+    {{ entry_title|upper }}
+{% endblock %}
+
+<!-- Messages -->
+{% block message %}
+    {% if messages %}
+    <div class="col text-center info-bar py-1">
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col pt-3">
-            <input class="btn btn-outline-secondary border" type="submit" value="EDIT">
-        </div>
-    </div>
-
-    <!-- Alert messages -->
-    {% if messages %}
-    <div class="row pb-1">
-        <div class="col">
-            <div class="alert alert-success">
-                <div class="messages">
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 
     {% if entry_title %}
-        {{ entry|safe }}
+    <div class="row px-5">
+        <div class="col ">
+            {{ entry|safe }}
+        </div>
+    </div>
     {% endif %}
+
+    <div class="row">
+        <div class="col pt-3 pb-5 ml-5">
+            <form action="{% url 'encyclopedia:edit_page' %}" method="GET">
+                {% csrf_token %}
+                <div class="input-group mb-2">
+                    <input type="text" name="title" value="{{ entry_title }}" hidden>
+                    <input class="btn btn-outline-success sharp-border" type="submit" value="Edit page">
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

@@ -52,7 +52,6 @@ textarea {
 }
 
 .logo {
-    padding-left: 200px;
     font-family: 'Libre Baskerville', 'Serif';
     color: #2F4F4F;
     font-size: 1.5rem;
@@ -70,6 +69,11 @@ textarea {
 
 .alert-warning {
     background-color: #FF6060;
+    color: white;
+}
+
+.alert-success {
+    background-color: #81c360;
     color: white;
 }
 

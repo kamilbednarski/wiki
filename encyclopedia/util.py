@@ -58,6 +58,18 @@ def get_entry(title):
     except FileNotFoundError:
         return None
 
+def get_entry_markdown(title):
+    """
+    Retrieves an encyclopedia entry by its title. If no such
+    entry exists, the function returns None.
+    """
+    try:
+        f = default_storage.open(f"entries/{title}.md")
+        content = f.read().decode("utf-8")
+        return content
+    except FileNotFoundError:
+        return None
+
 
 def get_filename(title):
     """

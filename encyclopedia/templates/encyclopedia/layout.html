@@ -21,11 +21,11 @@
     </head>
     <body>
         <!-- Main Logo -->
-        <div class="row border-bottom">
-            <div class="col pt-4 text-center">
-                <div class="logo">Encyclopedia</div>
+        <div class="row border-bottom px-5">
+            <div class="col pt-4 text-left logo">
+                Encyclopedia
             </div>
-            <div class="col-2 pt-4 pb-3">
+            <div class="col-3 pt-4 pb-3">
                 <form action="{% url 'encyclopedia:search' %}" method="POST">
                     {% csrf_token %}
                     <div class="input-group mb-2">
@@ -62,7 +62,7 @@
                 {% endblock %}
         </div>
         
-        <!-- Content -->        
+        <!-- Content -->      
         {% block body %}
         {% endblock %}
 

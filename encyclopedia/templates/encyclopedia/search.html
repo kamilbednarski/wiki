@@ -4,25 +4,24 @@
     Search - Encyclopedia
 {% endblock %}
 
-{% block body %}
-    <h1>Search results</h1>
-    
-    <!-- Alert messages -->
-    {% if messages %}
-    <div class="row pb-1">
-        <div class="col">
-            <div class="alert alert-secondary">
-                <div class="messages">
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                    {% endfor %}
-                </div>
+{% block header %}
+    SEARCH RESULTS
+{% endblock %}
+
+<!-- Messages -->
+{% block message %}
+        {% if messages %}
+        <div class="col text-center info-bar py-1">
+            <div class="messages">
+                {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
             </div>
         </div>
-    </div>
-    {% endif %}
+        {% endif %}
+{% endblock %}
 
-    <h4>Query: '{{ query }}'</h4>
+{% block body %}
 
     {% if list_of_entries %}
     <ul>

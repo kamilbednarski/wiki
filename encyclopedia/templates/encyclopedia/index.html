@@ -8,27 +8,27 @@
     ALL PAGES
 {% endblock %}
 
-{% block body %}
-
-    <!-- Alert messages -->
+<!-- Messages -->
+{% block message %}
     {% if messages %}
-    <div class="row pb-1">
-        <div class="col">
-            <div class="alert alert-warning">
-                <div class="messages">
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                    {% endfor %}
-                </div>
-            </div>
+    <div class="col text-center alert-warning py-1">
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
         </div>
     </div>
     {% endif %}
+{% endblock %}
 
-    <ul>
+{% block body %}
+
+    <div class="row p-5">
         {% for entry in entries %}
-            <li><a href="{% url 'encyclopedia:entry' entry %}"><h4 class="text-dark">{{ entry }}</h4></a></li>
+        <div class="col-3 pb-1">
+            <li class="text-secondary"><a href="{% url 'encyclopedia:entry' entry %}"><h4 class="text-secondary">{{ entry }}</h4></a></li>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 
 {% endblock %}
